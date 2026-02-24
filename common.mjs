@@ -1,3 +1,10 @@
 import words from "./words.json" with { type: "json" };
 
-export const getDictionarySize = () => words.length;
+
+
+export const state = {
+    BasicEnglishWords: new Set (words),
+    userDictionary:[]
+}
+
+
