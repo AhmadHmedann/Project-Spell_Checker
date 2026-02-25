@@ -1,14 +1,15 @@
 import * as Engine from "./common.mjs";
 
 window.onload = function () {
-  document
-    .getElementById("check-spelling")
-    .addEventListener("click", renderMisspelledWords);
-  document
-    .getElementById("spell-results")
-    .addEventListener("click", addToDictionaryHandler);
-  document.getElementById("spell-input").addEventListener("input", () => {
-    document.getElementById("spell-results").textContent = "";
+  const checkBTn = document.getElementById("check-spelling");
+  checkBTn.addEventListener("click", renderMisspelledWords);
+
+  const resultsRoot = document.getElementById("spell-results");
+  resultsRoot.addEventListener("click", addToDictionaryHandler);
+
+  const input = document.getElementById("spell-input");
+  input.addEventListener("input", () => {
+    resultsRoot.textContent = "";
   });
 };
 
@@ -45,7 +46,7 @@ function renderMisspellings(misspelledWords) {
 
     const btn = document.createElement("button");
     btn.className = "add-word";
-    btn.textContent = " Add to the dictionary";
+    btn.textContent = "Add to the dictionary";
     btn.type = "button";
     btn.dataset.word = word;
 
@@ -68,5 +69,3 @@ function addToDictionaryHandler(event) {
   }
   renderMisspelledWords();
 }
-
-
