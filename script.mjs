@@ -3,7 +3,7 @@ import * as Engine from "./common.mjs";
 window.onload = function () {
   document
     .getElementById("check-spelling")
-    .addEventListener("click", renderMisSpelledWords);
+    .addEventListener("click", renderMisspelledWords);
   document
     .getElementById("spell-results")
     .addEventListener("click", addToDictionaryHandler);
@@ -12,7 +12,7 @@ window.onload = function () {
   });
 };
 
-function renderMisSpelledWords(event) {
+function renderMisspelledWords(event) {
   const textArea = document.getElementById("spell-input").value;
 
   const cleanWordsArr = textArea
@@ -40,14 +40,17 @@ function renderMisspellings(misspelledWords) {
   for (const word of misspelledWords) {
     const li = document.createElement("li");
     li.className = "mistake";
-    
+
     const strong = document.createElement("strong");
     strong.textContent = word;
     li.appendChild(strong);
 
     const btn = document.createElement("button");
+    btn.className = "add-word"
     btn.textContent = " Add to the dictionary";
     btn.type = "button";
+    btn.dataset.word = word;
+    
 
     li.append("  ");
     li.appendChild(btn);
@@ -57,11 +60,16 @@ function renderMisspellings(misspelledWords) {
 }
 
 function addToDictionaryHandler(event) {
-  const li = event.target.closest(".mistake");
-  const word = li.querySelector("strong").textContent;
+  const btn = event.target.closest("button.add-word");
+  if(!btn) return;
+
+  const word = btn.dataset.word;
+  if(!word) return;
+
+  if(!Engine.state.userDictionary.includes(word.toLowerCase())){
   Engine.state.userDictionary.push(word);
-  console.log(Engine.state.userDictionary);
-  renderMisSpelledWords();
+  }
+  renderMisspelledWords();
 }
 
 //: ,.?!":;
