@@ -12,7 +12,7 @@ window.onload = function () {
   });
 };
 
-function renderMisspelledWords(event) {
+function renderMisspelledWords() {
   const textArea = document.getElementById("spell-input").value;
 
   const cleanWordsArr = Engine.cleanStringInput(textArea);
