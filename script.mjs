@@ -18,7 +18,7 @@ function renderMisspelledWords(event) {
   const cleanWordsArr = textArea
     .replace(/-/g, " ")
     .replace(/[,.?!":;]/g, "")
-    .split(/\s+/);
+    .split(/\s+/).filter(Boolean);
   const misspelledWords = Engine.misspelledWordsList(cleanWordsArr);
   renderMisspellings(misspelledWords);
 }
