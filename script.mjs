@@ -17,7 +17,7 @@ function renderMisspelledWords(event) {
 
   const cleanWordsArr = textArea
     .replace(/-/g, " ")
-    .replace(/[: ,.?!":;]/g, "")
+    .replace(/[,.?!":;]/g, "")
     .split(/\s+/);
   const misspelledWords = Engine.misspelledWordsList(cleanWordsArr);
   renderMisspellings(misspelledWords);
@@ -30,7 +30,8 @@ function renderMisspellings(misspelledWords) {
 
   const warning = document.createElement("p");
   warning.className = "warning";
-  warning.textContent = "Spelling mistakes found: "; //innerHTML later for highlight
+  warning.innerHTML =
+    "<mark> <strong>Spelling mistakes found:</strong> </mark>";
   root.appendChild(warning);
 
   const list = document.createElement("ul");
@@ -46,30 +47,29 @@ function renderMisspellings(misspelledWords) {
     li.appendChild(strong);
 
     const btn = document.createElement("button");
-    btn.className = "add-word"
+    btn.className = "add-word";
     btn.textContent = " Add to the dictionary";
     btn.type = "button";
     btn.dataset.word = word;
-    
 
     li.append("  ");
     li.appendChild(btn);
-    console.log(li);
     list.append(li);
   }
 }
 
 function addToDictionaryHandler(event) {
   const btn = event.target.closest("button.add-word");
-  if(!btn) return;
+  if (!btn) return;
 
   const word = btn.dataset.word;
-  if(!word) return;
+  if (!word) return;
 
-  if(!Engine.state.userDictionary.includes(word.toLowerCase())){
-  Engine.state.userDictionary.push(word);
+  const lower = word.toLowerCase();
+  if (!Engine.state.userDictionary.includes(lower)) {
+    Engine.state.userDictionary.push(lower);
   }
   renderMisspelledWords();
 }
 
-//: ,.?!":;
+

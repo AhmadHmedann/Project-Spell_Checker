@@ -7,9 +7,9 @@
 
 
 
-If all words are correct, then no message needs to be displayed underneath the input.
 
-If a misspelled word is detected, there should be a way for the user to add that word to the dictionary. The spell check should then be triggered again, and the word that was added to the dictionary should no longer be considered a misspelled word (so should _not_ be highlighted). **Note**: the custom dictionary does _not_ need to be saved, so reloading the page can reset back to the initial dictionary.
+
+ The spell check should then be triggered again, and the word that was added to the dictionary should no longer be considered a misspelled word (so should _not_ be highlighted). **Note**: the custom dictionary does _not_ need to be saved, so reloading the page can reset back to the initial dictionary.
 
 When the user changes the text in the input, the warning about misspelled words should be cleared.
 
