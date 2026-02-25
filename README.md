@@ -6,7 +6,6 @@
 
 
 
-All spelling mistakes should be presented to the user underneath the input, along with a message explaining that the words are misspelled. This message should be styled with highlighting in some way that makes it obvious that there is a spelling mistake. **Note**: highlighting the word within the input itself is quite difficult, so don't attempt it as part of the assessment.
 
 If all words are correct, then no message needs to be displayed underneath the input.
 

@@ -3,15 +3,21 @@ import * as Engine from "./common.mjs";
 window.onload = function () {
   document
     .getElementById("check-spelling")
-    .addEventListener("click", inputHandler);
+    .addEventListener("click", renderMisSpelledWords);
+  document
+    .getElementById("spell-results")
+    .addEventListener("click", addToDictionaryHandler);
+  document.getElementById("spell-input").addEventListener("input", () => {
+    document.getElementById("spell-results").textContent = "";
+  });
 };
 
-function inputHandler(event) {
+function renderMisSpelledWords(event) {
   const textArea = document.getElementById("spell-input").value;
 
   const cleanWordsArr = textArea
     .replace(/-/g, " ")
-    .replace(/[^\w\s]/g, "")
+    .replace(/[: ,.?!":;]/g, "")
     .split(/\s+/);
   const misspelledWords = Engine.misspelledWordsList(cleanWordsArr);
   renderMisspellings(misspelledWords);
@@ -26,12 +32,15 @@ function renderMisspellings(misspelledWords) {
   warning.className = "warning";
   warning.textContent = "Spelling mistakes found: "; //innerHTML later for highlight
   root.appendChild(warning);
+
   const list = document.createElement("ul");
   list.id = "misspelled-list";
   root.appendChild(list);
 
   for (const word of misspelledWords) {
     const li = document.createElement("li");
+    li.className = "mistake";
+    
     const strong = document.createElement("strong");
     strong.textContent = word;
     li.appendChild(strong);
@@ -42,7 +51,17 @@ function renderMisspellings(misspelledWords) {
 
     li.append("  ");
     li.appendChild(btn);
-
+    console.log(li);
     list.append(li);
   }
 }
+
+function addToDictionaryHandler(event) {
+  const li = event.target.closest(".mistake");
+  const word = li.querySelector("strong").textContent;
+  Engine.state.userDictionary.push(word);
+  console.log(Engine.state.userDictionary);
+  renderMisSpelledWords();
+}
+
+//: ,.?!":;
