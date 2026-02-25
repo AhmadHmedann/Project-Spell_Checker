@@ -6,7 +6,7 @@ export const state = {
 };
 
 function startsWithCapital(word) {
-  return word[0] === word[0]?.toUpperCase();
+   return /^[A-Z]/.test(word);
 }
 
 export function misspelledWordsList(wordsList) {
