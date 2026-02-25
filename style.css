@@ -1,0 +1,40 @@
+body {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 2rem auto;
+  line-height: 1.5;
+}
+
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.warning {
+  background-color: #ffe5e5;
+  border: 2px solid #cc0000;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.mistake {
+  margin: 0.5rem 0;
+}
+
+.mistake strong {
+  color: #cc0000;
+  text-decoration: underline;
+}
+
+.add-word {
+  margin-left: 0.5rem;
+}
