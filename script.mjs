@@ -15,10 +15,7 @@ window.onload = function () {
 function renderMisspelledWords(event) {
   const textArea = document.getElementById("spell-input").value;
 
-  const cleanWordsArr = textArea
-    .replace(/-/g, " ")
-    .replace(/[,.?!":;]/g, "")
-    .split(/\s+/).filter(Boolean);
+  const cleanWordsArr = Engine.cleanStringInput(textArea);
   const misspelledWords = Engine.misspelledWordsList(cleanWordsArr);
   renderMisspellings(misspelledWords);
 }
